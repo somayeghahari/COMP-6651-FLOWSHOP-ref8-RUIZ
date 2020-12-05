@@ -3,29 +3,30 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Flowshop {
 	  public static void main (String[] args)
 	  {
-		  String path = "input/2/Ta004_2.txt";
+		  String path = "input/2/Ta001_2.txt";
 		  ArrayList<Job> jobs = readFile(path);	  
 		
 		  if (jobs.size() != 0)
 		  {
-			  // Call the methods to process the jobs
 			  
-			  // this is a test to see if it is working, we can erase that
+			  // print job list
 			  for (int i = 0; i < jobs.size(); i++)
 				  System.out.println(jobs.get(i).getJobID()+ " "+ jobs.get(i).getProcessingTimes());
 			
+			  // phase1: find an initial solution based on NEH heuristic
 			  NEH neh = new NEH(jobs);
-			  neh.getFeasibleSolution();
+			  neh.getInitialSolution();
 		  }
 	  }
 	  
 	  /**
 	   * Method to parse the input file given by the path parameter
 	   * @param path - the path of the file to be opened
-	   * @return the list with the cost for each job j
+	   * @return the list of jobs, each job has a list of processing time
 	   */
 	  public static ArrayList<Job> readFile(String path)
 	  {
