@@ -14,19 +14,22 @@ public class Job {
 
 	private List<Integer> processingTimes;
     private int totalTime;
+    private int sizePT;
 
-    Job(int jobID, ArrayList<Integer> processingTimes){
+	Job(int jobID, ArrayList<Integer> processingTimes){
         this.jobID = jobID;
         this.processingTimes = processingTimes;
         this.totalTime = 0;
+        sizePT=0;
         for(Integer i: processingTimes){
             totalTime += i;
+            sizePT++;
         }
     }
     Job(int jobID){
         this.jobID = jobID;
-        this.totalTime = 0;
-
+        totalTime = 0;
+        sizePT=0;
     }
 
     public int getJobID() {
@@ -41,12 +44,17 @@ public class Job {
 		this.processingTimes = processingTimes;
 		for(Integer i: processingTimes){
             totalTime += i;
+            sizePT++;
         }
 	}
 
     public int getTotalTime() {
         return totalTime;
     }
+
+    public int getSizePT() {
+		return sizePT;
+	}
 }
 
 class JobComparator implements Comparator<Job>{
