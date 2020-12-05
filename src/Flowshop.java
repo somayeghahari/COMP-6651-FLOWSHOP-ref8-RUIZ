@@ -20,6 +20,9 @@ public class Flowshop {
 			  // phase1: find an initial solution based on NEH heuristic
 			  NEH neh = new NEH(jobs);
 			  neh.getInitialSolution();
+			  
+			  //phase2: Destruction 
+			  // ...
 		  }
 	  }
 	  
