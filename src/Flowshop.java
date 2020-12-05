@@ -14,9 +14,14 @@ public class Flowshop {
 		  {
 			  
 			  // print job list
+			  System.out.println("Reading jobs from file:");
+			  System.out.println("id - [list of processing times on machines]");
+
 			  for (int i = 0; i < jobs.size(); i++)
-				  System.out.println(jobs.get(i).getJobID()+ " "+ jobs.get(i).getProcessingTimes());
-			
+				  System.out.println(jobs.get(i).getJobID()+ " - "+ jobs.get(i).getProcessingTimes());
+		    	
+			  System.out.println();
+			  System.out.println("Phase 1:");
 			  // phase1: find an initial solution based on NEH heuristic
 			  NEH neh = new NEH(jobs);
 			  neh.getInitialSolution();
