@@ -89,13 +89,12 @@ public class NEH {
 //            	System.out.println("Flow-shop Makespan: " + makespan);
             }
         }
-    	System.out.println();
-    	System.out.print("flow-shop Schedule: ");
+    	System.out.print("   Flow-shop Schedule: ");
     	for(Job d: this.schedule){
     		System.out.print(d.getJobID()+", ");	
     		}
     	System.out.println();
-    	System.out.println("Flow-shop Makespan: " + makespan);
+    	System.out.println("   Flow-shop Makespan: " + makespan);
             
     }
 
