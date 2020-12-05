@@ -6,7 +6,7 @@ import java.util.List;
 public class Flowshop {
 	  public static void main (String[] args)
 	  {
-		  String path = "input/2/Ta001_2.txt";
+		  String path = "input/2/Ta004_2.txt";
 		  ArrayList<Job> jobs = readFile(path);	  
 		
 		  if (jobs.size() != 0)
@@ -16,6 +16,9 @@ public class Flowshop {
 			  // this is a test to see if it is working, we can erase that
 			  for (int i = 0; i < jobs.size(); i++)
 				  System.out.println(jobs.get(i).getJobID()+ " "+ jobs.get(i).getProcessingTimes());
+			
+			  NEH neh = new NEH(jobs);
+			  neh.getFeasibleSolution();
 		  }
 	  }
 	  
