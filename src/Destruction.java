@@ -31,6 +31,7 @@ public class Destruction {
         this.schedule = schedule;
         this.removedJobs = new ArrayList<Job>();
         this.remainingJobs = new ArrayList<Job>();
+        this.remainingJobs = schedule;
     }
     
     /**
@@ -48,36 +49,38 @@ public class Destruction {
     	if (randomJobsCount == 0)
     		randomJobsCount++;
     	
+    	// choose random jobs and remove them.
     	for(int i=0; i< randomJobsCount; i++) {
     		
     		int randJob = rand.nextInt(schedule.size());
     		
+    		// check if the generated random number is repetitive or not
     		while (indexRemovedList.contains(randJob))
     			randJob = rand.nextInt(schedule.size());
     		
+    		// keep track of removed jobs indexes.
     		indexRemovedList.add(randJob); 
-    		System.out.println("rand: " + randJob);
+    		
+    		// add random jobs to the list of removed.
     		this.removedJobs.add(schedule.get(randJob));		
     	} 
     	
-    	remainingJobs = schedule;
     	Collections.sort(indexRemovedList,Collections.reverseOrder());
     	
+    	// add remaining jobs to the remainingJobs List.
     	for(Integer itr:indexRemovedList)  {
     		remainingJobs.remove(remainingJobs.get(itr));
     	}
 
     	
     	System.out.println("********************* Destruction *****************");
-    	System.out.println(schedule);
-    	System.out.println("Size:" + schedule.size());
     	System.out.println("Random:" + randomJobsCount);
     	System.out.println("removedJobs:");
-    	System.out.println(removedJobs);
+    	System.out.println(this.removedJobs);
     	System.out.println("indexRemovedList:");
     	System.out.println(indexRemovedList);
     	System.out.println("remainingJobs:");
-    	System.out.println(remainingJobs); 
+    	System.out.println(this.remainingJobs); 
     	System.out.println("***************************************************");
     }
     
