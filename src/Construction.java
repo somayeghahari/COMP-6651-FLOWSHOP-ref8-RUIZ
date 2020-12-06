@@ -20,13 +20,76 @@ public class Construction {
     private List<Job> remainingJobs;
     
     /**
+     * makespan of the scheduled jobs
+     */
+    private int makespan;
+    
+    /**
      * class constructor
-     * @param schedule
+     * @param removedJobs list of removed jobs
+     * @param remainingJobs list of remaining jobs
      */
     Construction (List<Job> removedJobs, List<Job> remainingJobs){
         this.removedJobs = new ArrayList<Job>();
         this.remainingJobs = new ArrayList<Job>();
         this.removedJobs = removedJobs;
         this.remainingJobs = remainingJobs;
+        
+    	System.out.println("********************* Construction *****************");
+    	System.out.println("removedJobs:");
+    	System.out.println(this.removedJobs);
+    	System.out.println("remainingJobs:");
+    	System.out.println(this.remainingJobs); 
+    	System.out.println("***************************************************");
+    }
+    
+    public void constructSolution() {
+    	
+        for (int j = 0; j < this.removedJobs.size(); j++) {
+            int temp = Integer.MAX_VALUE;
+    		List<Job> minMakespanSchedule = new ArrayList<Job>();
+
+
+            // each new job iterates through all positions
+            for (int i = 0; i <= this.remainingJobs.size(); i++) {
+        		List<Job> tempSchedule = new ArrayList<Job>();
+
+            	for (int k = 0; k < this.remainingJobs.size(); k++) {
+            		 if(k!=i) {
+            			tempSchedule.add(this.remainingJobs.get(k));
+            		}
+            		else {
+            			tempSchedule.add(removedJobs.get(j));
+            			tempSchedule.add(remainingJobs.get(k));
+            		}
+            	}
+            	if(tempSchedule.size()==remainingJobs.size())
+        			tempSchedule.add(removedJobs.get(j));
+
+            	// the makespan of sequence is calculated
+            	if(NEH.calculateMakespan(tempSchedule) < temp ) {
+            		temp = NEH.calculateMakespan(tempSchedule);
+            		minMakespanSchedule = tempSchedule;
+            	}
+            }
+            
+            // the sequence with lowest makespan is set as scheduled 
+            if(!minMakespanSchedule.isEmpty()) {
+            	remainingJobs = minMakespanSchedule;
+            	makespan = temp;
+
+            }
+            
+        }
+    }
+    
+    public List<Job> getNewSchedule ()
+    {
+    	return remainingJobs;
+    }
+    
+    public int getMakeSpan ()
+    {
+    	return makespan;
     }
 }

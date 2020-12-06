@@ -84,4 +84,14 @@ public class Destruction {
     	System.out.println("***************************************************");
     }
     
+    public List<Job> getRemovedJobs()
+    {
+    	return removedJobs;
+    }
+    
+    public List<Job> getRemainingJobs ()
+    {
+    	return remainingJobs;
+    }
+    
 }

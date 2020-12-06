@@ -47,7 +47,7 @@ public class NEH {
         // step3 of NEH heuristic
         for (int j = 2; j < jobs.size(); j++) {
             int temp = Integer.MAX_VALUE;
-    		List<Job> minMakespanSchedule =new ArrayList<Job>(); ;
+    		List<Job> minMakespanSchedule =new ArrayList<Job>();
 
 
             // each new job iterates through all positions
@@ -141,7 +141,7 @@ public class NEH {
      * @param jobs list of jobs
      * @return makespan of list of jobs 
      */
-    public int calculateMakespan(List<Job> jobs) {
+    public static int calculateMakespan(List<Job> jobs) {
         int totalMakespan = 0;
 
         ArrayList<int[]> sumLst = new ArrayList<int[]>();
