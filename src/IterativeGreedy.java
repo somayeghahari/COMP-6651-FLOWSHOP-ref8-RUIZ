@@ -1,0 +1,32 @@
+import java.util.List;
+
+public class IterativeGreedy {
+	
+	private List<Job> input;
+	
+	public IterativeGreedy (List<Job> jobs)
+	{
+		input = jobs;
+	}
+	
+	public List<Job> CalculateSolution()
+	{
+		System.out.println();
+		System.out.println("Phase 1:");
+		// phase1: find an initial solution based on NEH heuristic
+		NEH neh = new NEH(input);
+		neh.getInitialSolution();
+		List<Job> partialSolution = neh.getSchedule();
+		LocalSearch ls = new LocalSearch();
+		partialSolution = ls.IterativeImprovementInsert(partialSolution);
+		List<Job> solution = partialSolution;
+		  
+		// while (termination criteria not satisfied)
+			//phase2: Destruction 
+			// phase 3: local search
+			// phase 4: acceptance criterion
+		  
+		return solution;
+	}
+	
+}
