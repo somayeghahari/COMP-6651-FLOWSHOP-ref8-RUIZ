@@ -21,12 +21,11 @@ public class IterativeGreedy {
 		Destruction destruction = new Destruction(partialSolution);
 		destruction.destructSolution();
 		
+		System.out.println();
+		System.out.println("Phase 2:");
+		
 		Construction construction = new Construction(destruction.getRemovedJobs(), destruction.getRemainingJobs());
 		construction.constructSolution();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("New Schedule: ");
-		System.out.println(construction.getNewSchedule());
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
 	//	LocalSearch ls = new LocalSearch();
 	//	partialSolution = ls.IterativeImprovementInsert(partialSolution);

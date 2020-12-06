@@ -73,7 +73,7 @@ public class Destruction {
     	}
 
     	
-    	System.out.println("********************* Destruction *****************");
+    /*	System.out.println("********************* Destruction *****************");
     	System.out.println("Random:" + randomJobsCount);
     	System.out.println("removedJobs:");
     	System.out.println(this.removedJobs);
@@ -81,7 +81,7 @@ public class Destruction {
     	System.out.println(indexRemovedList);
     	System.out.println("remainingJobs:");
     	System.out.println(this.remainingJobs); 
-    	System.out.println("***************************************************");
+    	System.out.println("***************************************************"); */
     }
     
     public List<Job> getRemovedJobs()

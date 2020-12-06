@@ -30,17 +30,12 @@ public class Construction {
      * @param remainingJobs list of remaining jobs
      */
     Construction (List<Job> removedJobs, List<Job> remainingJobs){
+    	
         this.removedJobs = new ArrayList<Job>();
         this.remainingJobs = new ArrayList<Job>();
         this.removedJobs = removedJobs;
         this.remainingJobs = remainingJobs;
         
-    	System.out.println("********************* Construction *****************");
-    	System.out.println("removedJobs:");
-    	System.out.println(this.removedJobs);
-    	System.out.println("remainingJobs:");
-    	System.out.println(this.remainingJobs); 
-    	System.out.println("***************************************************");
     }
     
     public void constructSolution() {
@@ -81,6 +76,14 @@ public class Construction {
             }
             
         }
+        
+    	System.out.print("   Flow-shop New Schedule: ");
+    	for(Job d: this.remainingJobs){
+    		System.out.print(d.getJobID()+", ");	
+    		}
+    	System.out.println();
+    	System.out.println("   Flow-shop New Makespan: " + makespan);
+    	
     }
     
     public List<Job> getNewSchedule ()
