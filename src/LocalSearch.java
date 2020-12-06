@@ -95,9 +95,38 @@ public class LocalSearch {
     	return permutation;
     }
     
-    public void CheckAcceptanceCriteria()
+    /**
+     * Method to check the acceptance criteria,
+     * and  attribute the correct values to the temporary solutions
+     * @param pi original list
+     * @param piPrime list derived from the original
+     * @param piB list created by the destruction operation
+     */
+    public void CheckAcceptanceCriteria(List<Job> pi, List<Job> piPrime, List<Job> piB)
     {
+    	NEH neh = new NEH(pi);
+    	int cpi = neh.calculateMakespan(pi);
+    	int cpiPrime = neh.calculateMakespan(piPrime);
+    	int cpiB = neh.calculateMakespan(piB);
     	
+    	// TODO: fix this value and test this method (I'll do it tomorrow probably)
+    	// temperature = T * sum(1, m, (sum(1, n, p_ij)))/(n * m * 10)
+    	float temperature = 1;
+    	
+    	if (cpiPrime < cpi)
+    	{
+    		pi = CopyList(piPrime);
+    		cpi = cpiPrime;
+    		if (cpi < cpiB)
+    		{
+    			piB = CopyList(pi);
+    			cpiB = cpi;
+    		}
+    	}
+    	else if (Math.random() <= Math.exp(-(cpiPrime-cpi)/temperature))
+    	{
+    		pi = CopyList(piPrime);
+    	}
     }
     
     /**
