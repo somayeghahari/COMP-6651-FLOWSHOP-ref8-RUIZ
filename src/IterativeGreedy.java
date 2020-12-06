@@ -17,6 +17,8 @@ public class IterativeGreedy {
 		NEH neh = new NEH(input);
 		neh.getInitialSolution();
 		List<Job> partialSolution = neh.getSchedule();
+		Destruction destruction = new Destruction(neh.getSchedule());
+		
 		LocalSearch ls = new LocalSearch();
 		partialSolution = ls.IterativeImprovementInsert(partialSolution);
 		List<Job> solution = partialSolution;
