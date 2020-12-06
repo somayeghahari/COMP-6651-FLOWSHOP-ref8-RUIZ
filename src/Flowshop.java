@@ -7,7 +7,7 @@ import java.util.List;
 public class Flowshop {
 	  public static void main (String[] args)
 	  {
-		  String path = "input/2/Ta001_2.txt";
+		  String path = "input/2/Ta003_2.txt";
 		  ArrayList<Job> jobs = readFile(path);	  
 		
 		  if (jobs.size() != 0)
