@@ -16,27 +16,38 @@ public class IterativeGreedy {
 		// phase1: find an initial solution based on NEH heuristic
 		NEH neh = new NEH(input);
 		neh.getInitialSolution();
-		List<Job> partialSolution = neh.getSchedule();
+		List<Job> pi = neh.getSchedule();
 		
-		Destruction destruction = new Destruction(partialSolution);
-		destruction.destructSolution();
+		LocalSearch ls = new LocalSearch();
+		pi = ls.IterativeImprovementInsert(pi);
+		List<Job> piB = LocalSearch.CopyList(pi);
 		
-		System.out.println();
-		System.out.println("Phase 2:");
+		// This value must be determined by the execution time
+		int terminationCriteria = 1000;
 		
-		Construction construction = new Construction(destruction.getRemovedJobs(), destruction.getRemainingJobs());
-		construction.constructSolution();
-		
-	//	LocalSearch ls = new LocalSearch();
-	//	partialSolution = ls.IterativeImprovementInsert(partialSolution);
-		List<Job> solution = partialSolution;
+		while (terminationCriteria > 1)
+		{
+			Destruction destruction = new Destruction(LocalSearch.CopyList(pi));
+			destruction.destructSolution();
+			
+			System.out.println();
+			System.out.println("Phase 2:");
+			
+			Construction construction = new Construction(destruction.getRemovedJobs(), destruction.getRemainingJobs());
+			construction.constructSolution();
+			
+			System.out.println();
+			System.out.println("Phase 3:");
+			
+			List<Job> piPrime = construction.getNewSchedule();
+			piPrime = ls.IterativeImprovementInsert(piPrime);
+			
+			ls.CheckAcceptanceCriteria(pi, piPrime, piB);
+			
+			terminationCriteria--;
+		}
 		  
-		// while (termination criteria not satisfied)
-			//phase2: Destruction 
-			// phase 3: local search
-			// phase 4: acceptance criterion
-		  
-		return solution;
+		return piB;
 	}
 	
 }

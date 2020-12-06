@@ -26,7 +26,6 @@ public class LocalSearch {
     public List<Job> IterativeImprovementInsert (List<Job> partialSolution)
     {
     	schedule = partialSolution;
-    	NEH neh = new NEH(schedule);
     	
     	boolean improve = true;
     	while (improve)
@@ -45,16 +44,15 @@ public class LocalSearch {
     			
     			List<Job> partialSchedule = BestPermutation(schedule, id);
     			
-    			if (neh.calculateMakespan(partialSchedule) < neh.calculateMakespan(schedule))
+    			if (NEH.calculateMakespan(partialSchedule) < NEH.calculateMakespan(schedule))
     			{
-    				System.out.println("FOUND DA SHITZ");
     				schedule = CopyList(partialSchedule);
     				improve = true;
     			}
     		}
     		
     	}
-    	makespan = neh.calculateMakespan(schedule);
+    	makespan = NEH.calculateMakespan(schedule);
     	return schedule;
     }
     
@@ -71,15 +69,14 @@ public class LocalSearch {
     	Job job = permutation.remove(id);
     	permutation.add(0, job);
     	
-    	NEH neh = new NEH(permutation);
-    	int makespan = neh.calculateMakespan(permutation);
+    	int makespan = NEH.calculateMakespan(permutation);
     	int opt = 0; // store the optimal position for the randomly selected job j
     	
     	for (int i = 1; i < permutation.size(); i++)
     	{
     		permutation.remove(i-1);
         	permutation.add(i, job);
-        	int partialMakespan = neh.calculateMakespan(permutation);
+        	int partialMakespan = NEH.calculateMakespan(permutation);
         	
         	
         	if (partialMakespan < makespan)
@@ -104,15 +101,17 @@ public class LocalSearch {
      */
     public void CheckAcceptanceCriteria(List<Job> pi, List<Job> piPrime, List<Job> piB)
     {
-    	NEH neh = new NEH(pi);
-    	int cpi = neh.calculateMakespan(pi);
-    	int cpiPrime = neh.calculateMakespan(piPrime);
-    	int cpiB = neh.calculateMakespan(piB);
+    	int cpi = NEH.calculateMakespan(pi);
+    	int cpiPrime = NEH.calculateMakespan(piPrime);
+    	int cpiB = NEH.calculateMakespan(piB);
     	
-    	// TODO: fix this value and test this method (I'll do it tomorrow probably)
+    	// I defined T as 0.5f, but this value needs to be adjusted
     	// temperature = T * sum(1, m, (sum(1, n, p_ij)))/(n * m * 10)
-    	float temperature = 1;
-    	
+    	int sum = 0;
+    	for (int i = 0; i < pi.size(); i++)
+    		for (int j = 0; j < pi.get(i).getSizePT(); j++)
+    			sum += pi.get(i).getProcessingTimes().get(j);
+    	float temperature = 0.5f * sum/(pi.size() * pi.get(0).getSizePT() * 10);
     	if (cpiPrime < cpi)
     	{
     		pi = CopyList(piPrime);
@@ -127,6 +126,13 @@ public class LocalSearch {
     	{
     		pi = CopyList(piPrime);
     	}
+    	
+    	System.out.print("   Flow-shop New Schedule: ");
+    	for(Job d: piB){
+    		System.out.print(d.getJobID()+", ");	
+    		}
+    	System.out.println();
+    	System.out.println("   Flow-shop New Makespan: " + cpiB);
     }
     
     /**
@@ -134,7 +140,7 @@ public class LocalSearch {
      * @param copy the list you want to copy
      * @return the list copied to another pointer
      */
-    public List<Job> CopyList (List<Job> copy)
+    public static List<Job> CopyList (List<Job> copy)
     {
     	List<Job> result = new ArrayList<Job>();
     	for (int i = 0; i < copy.size(); i++)
