@@ -1,6 +1,6 @@
 import java.util.*;
 /**
- * Step 2 of Flowshop Scheduling Problem
+ * Phase 2 of Flowshop Scheduling Problem
  * Destruction Class destructs partial solution
  * @author Mehrnoosh Amjadi
  *
