@@ -105,13 +105,12 @@ public class LocalSearch {
     	int cpiPrime = NEH.calculateMakespan(piPrime);
     	int cpiB = NEH.calculateMakespan(piB);
     	
-    	// I defined T as 0.5f, but this value needs to be adjusted
     	// temperature = T * sum(1, m, (sum(1, n, p_ij)))/(n * m * 10)
     	int sum = 0;
     	for (int i = 0; i < pi.size(); i++)
     		for (int j = 0; j < pi.get(i).getSizePT(); j++)
     			sum += pi.get(i).getProcessingTimes().get(j);
-    	float temperature = 0.5f * sum/(pi.size() * pi.get(0).getSizePT() * 10);
+    	float temperature = 0.7f * sum/(pi.size() * pi.get(0).getSizePT() * 10);
     	if (cpiPrime < cpi)
     	{
     		pi = CopyList(piPrime);
@@ -127,12 +126,12 @@ public class LocalSearch {
     		pi = CopyList(piPrime);
     	}
     	
-    	System.out.print("   Flow-shop New Schedule: ");
-    	for(Job d: piB){
-    		System.out.print(d.getJobID()+", ");	
-    		}
-    	System.out.println();
-    	System.out.println("   Flow-shop New Makespan: " + cpiB);
+//    	System.out.print("   Flow-shop New Schedule: ");
+//    	for(Job d: piB){
+//    		System.out.print(d.getJobID()+", ");	
+//    		}
+//    	System.out.println();
+//    	System.out.println("   Flow-shop New Makespan: " + cpiB);
     }
     
     /**

@@ -7,22 +7,31 @@ import java.util.List;
 public class Flowshop {
 	  public static void main (String[] args)
 	  {
-		  String path = "input/2/Ta003_2.txt";
-		  ArrayList<Job> jobs = readFile(path);	  
-		
-		  if (jobs.size() != 0)
+		  for (int i = 0; i <= 120; i++)
 		  {
-			  
-			  // print job list
-			  System.out.println("Reading jobs from file:");
-			  System.out.println("id - [list of processing times on machines]");
-
-			  for (int i = 0; i < jobs.size(); i++)
-				  System.out.println(jobs.get(i).getJobID()+ " - "+ jobs.get(i).getProcessingTimes());
-			  
-			  IterativeGreedy ig = new IterativeGreedy(jobs);
-			  List<Job> solution = ig.CalculateSolution();
-			  
+			  String path = "input/2/Ta"+ String.format("%03d", i) +"_2.txt";
+			  ArrayList<Job> jobs = readFile(path);	  
+			
+			  if (jobs.size() != 0)
+			  {
+				  
+				  // print job list
+//				  System.out.println("Reading jobs from file:");
+//				  System.out.println("id - [list of processing times on machines]");
+//
+//				  for (int j = 0; j < jobs.size(); j++)
+//					  System.out.println(jobs.get(j).getJobID()+ " - "+ jobs.get(j).getProcessingTimes());
+				  
+				  IterativeGreedy ig = new IterativeGreedy(jobs);
+				  List<Job> solution = ig.CalculateSolution();
+				  System.out.println("Executing test " + String.format("%03d", i) + " of 120:");
+				  System.out.print("   Flow-shop Schedule: ");
+				  for (int j = 0; j < solution.size(); j++)
+					  System.out.print(solution.get(j).getJobID() + " ");
+				  System.out.println();
+				  System.out.println("   Flow-shop Makespan: " + NEH.calculateMakespan(solution));
+				  System.out.println();
+			  }  
 		  }
 	  }
 	  

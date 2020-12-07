@@ -77,12 +77,12 @@ public class Construction {
             
         }
         
-    	System.out.print("   Flow-shop New Schedule: ");
-    	for(Job d: this.remainingJobs){
-    		System.out.print(d.getJobID()+", ");	
-    		}
-    	System.out.println();
-    	System.out.println("   Flow-shop New Makespan: " + makespan);
+//    	System.out.print("   Flow-shop New Schedule: ");
+//    	for(Job d: this.remainingJobs){
+//    		System.out.print(d.getJobID()+", ");	
+//    		}
+//    	System.out.println();
+//    	System.out.println("   Flow-shop New Makespan: " + makespan);
     	
     }
     

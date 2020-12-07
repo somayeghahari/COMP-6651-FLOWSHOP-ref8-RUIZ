@@ -11,8 +11,8 @@ public class IterativeGreedy {
 	
 	public List<Job> CalculateSolution()
 	{
-		System.out.println();
-		System.out.println("Phase 1:");
+//		System.out.println();
+//		System.out.println("Phase 1:");
 		// phase1: find an initial solution based on NEH heuristic
 		NEH neh = new NEH(input);
 		neh.getInitialSolution();
@@ -31,15 +31,15 @@ public class IterativeGreedy {
 			Destruction destruction = new Destruction(LocalSearch.CopyList(pi));
 			destruction.destructSolution();
 			
-			System.out.println();
-			System.out.println("Phase 2:");
+//			System.out.println();
+//			System.out.println("Phase 2:");
 			
 			Construction construction = new Construction(destruction.getRemovedJobs(), destruction.getRemainingJobs());
 			construction.constructSolution();
 			
-			System.out.println();
-			System.out.println("Phase 3:");
-			
+//			System.out.println();
+//			System.out.println("Phase 3:");
+//			
 			List<Job> piPrime = construction.getNewSchedule();
 			piPrime = ls.IterativeImprovementInsert(piPrime);
 			
