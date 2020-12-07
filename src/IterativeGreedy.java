@@ -22,10 +22,11 @@ public class IterativeGreedy {
 		pi = ls.IterativeImprovementInsert(pi);
 		List<Job> piB = LocalSearch.CopyList(pi);
 		
-		// This value must be determined by the execution time
-		int terminationCriteria = 1000;
+		// n * m/2 * 60
+		long terminationCriteria = pi.size() * pi.get(0).getSizePT() * 30;
+		long start = System.currentTimeMillis();
 		
-		while (terminationCriteria > 1)
+		while (terminationCriteria > 0)
 		{
 			Destruction destruction = new Destruction(LocalSearch.CopyList(pi));
 			destruction.destructSolution();
@@ -44,7 +45,10 @@ public class IterativeGreedy {
 			
 			ls.CheckAcceptanceCriteria(pi, piPrime, piB);
 			
-			terminationCriteria--;
+			long finish = System.currentTimeMillis();
+			
+			terminationCriteria = terminationCriteria - (finish - start);
+			start = finish;
 		}
 		  
 		return piB;
