@@ -40,7 +40,7 @@ public class Flowshop {
 				  List<Job> solution = ig.CalculateSolution();
 				  long duration = System.currentTimeMillis()-s;
 
-				  String out = "\nExecuting test " + String.format("%03d", i) + " of "+fileNum+":\n"+
+				  String out = "\n\nExecuting test " + String.format("%03d", i) + " of "+fileNum+":\n"+
 				  "   Flow-shop Schedule: ";
 				  for (int j = 0; j < solution.size(); j++) {
 					  out = out + solution.get(j).getJobID() + " ";
