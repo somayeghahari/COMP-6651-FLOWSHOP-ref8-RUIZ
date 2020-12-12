@@ -3,8 +3,17 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Main class of the program
+ *
+ */
 public class Flowshop {
+	/**
+	 * This method handles main loop of the program 
+	 * It parses the input file
+	 * It executes the greedy algorithm and prints the results
+	 * @param args
+	 */
 	  public static void main (String[] args)
 	  {
 		  for (int i = 0; i <= 120; i++)
