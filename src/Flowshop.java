@@ -1,5 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,35 +16,52 @@ public class Flowshop {
 	 * It parses the input file
 	 * It executes the greedy algorithm and prints the results
 	 * @param args
+	 * @throws IOException 
 	 */
-	  public static void main (String[] args)
+	  public static void main (String[] args) throws IOException
 	  {
-		  for (int i = 0; i <= 120; i++)
+		  int fileNum = 5;
+		  System.out.println("************************ Start of program ************************\n\n");
+		  System.out.println("Running Iterative Greedy algorithm on jobs read from " + fileNum + " files\n\n");
+		  long totalStart = System.currentTimeMillis();
+
+		  BufferedWriter bw = new BufferedWriter(new FileWriter("output-IG.txt"));
+
+		  for (int i = 0; i <= fileNum; i++)
 		  {
 			  String path = "input/2/Ta"+ String.format("%03d", i) +"_2.txt";
 			  ArrayList<Job> jobs = readFile(path);	  
 			
 			  if (jobs.size() != 0)
 			  {
-				  
-				  // print job list
-//				  System.out.println("Reading jobs from file:");
-//				  System.out.println("id - [list of processing times on machines]");
-//
-//				  for (int j = 0; j < jobs.size(); j++)
-//					  System.out.println(jobs.get(j).getJobID()+ " - "+ jobs.get(j).getProcessingTimes());
-				  
+				  long s = System.currentTimeMillis();
+
 				  IterativeGreedy ig = new IterativeGreedy(jobs);
 				  List<Job> solution = ig.CalculateSolution();
-				  System.out.println("Executing test " + String.format("%03d", i) + " of 120:");
-				  System.out.print("   Flow-shop Schedule: ");
-				  for (int j = 0; j < solution.size(); j++)
-					  System.out.print(solution.get(j).getJobID() + " ");
-				  System.out.println();
-				  System.out.println("   Flow-shop Makespan: " + NEH.calculateMakespan(solution));
-				  System.out.println();
+				  long duration = System.currentTimeMillis()-s;
+
+				  String out = "\nExecuting test " + String.format("%03d", i) + " of "+fileNum+":\n"+
+				  "   Flow-shop Schedule: ";
+				  for (int j = 0; j < solution.size(); j++) {
+					  out = out + solution.get(j).getJobID() + " ";
+//					  System.out.print(solution.get(j).getJobID() + " ");
+				  }
+				  s = System.currentTimeMillis();
+				  out = out + "\n   Flow-shop Makespan: " + NEH.calculateMakespan(solution);
+				  duration = duration+  (System.currentTimeMillis()-s);
+				  out = out + "\n   Time Duration: "+ duration;
+				  bw.write(out);
+				  bw.flush();
 			  }  
 		  }
+		  long totalDuration =(System.currentTimeMillis()-totalStart);
+
+		  System.out.println("Time of running Iterative Greedy algorithm:"+totalDuration+"\n\n");
+		  bw.write("\n\nTime of running Iterative Greedy algorithm:"+totalDuration);
+
+		  bw.close();
+		  System.out.println("************************ End of program ************************");
+
 	  }
 	  
 	  /**
