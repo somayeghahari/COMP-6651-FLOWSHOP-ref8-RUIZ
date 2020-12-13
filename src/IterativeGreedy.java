@@ -3,6 +3,8 @@ import java.util.List;
 public class IterativeGreedy {
 	
 	private List<Job> input;
+    private int makespan;
+
 	
 	public IterativeGreedy (List<Job> jobs)
 	{
@@ -50,8 +52,14 @@ public class IterativeGreedy {
 			terminationCriteria = terminationCriteria - (finish - start);
 			start = finish;
 		}
-		  
+		makespan = ls.getMakespan();
 		return piB;
 	}
-	
+    /**
+     * Method to get total makespan
+     * @return
+     */
+	public int getMakespan() {
+		return makespan;
+	}
 }
