@@ -147,4 +147,12 @@ public class LocalSearch {
     	
     	return result;
     }
+
+    /**
+     * Method to get makespan
+     * @return
+     */
+	public int getMakespan() {
+		return makespan;
+	}
 }
