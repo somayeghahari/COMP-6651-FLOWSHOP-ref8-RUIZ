@@ -20,14 +20,14 @@ public class Flowshop {
 	 */
 	  public static void main (String[] args) throws IOException
 	  {
-		  int fileNum = 5;
+		  int fileNum = 120;
 		  System.out.println("************************ Start of program ************************\n\n");
-		  System.out.println("Running Iterative Greedy algorithm on jobs read from " + fileNum + " files\n\n");
+		  System.out.println("Running Iterative Greedy algorithm on jobs read from " + fileNum/3 + " files\n\n");
 		  long totalStart = System.currentTimeMillis();
 
 		  BufferedWriter bw = new BufferedWriter(new FileWriter("output-IG.txt"));
 
-		  for (int i = 0; i <= fileNum; i++)
+		  for (int i = 0; i <= fileNum; i=i+3)
 		  {
 			  String path = "input/2/Ta"+ String.format("%03d", i) +"_2.txt";
 			  ArrayList<Job> jobs = readFile(path);	  
@@ -40,14 +40,14 @@ public class Flowshop {
 				  List<Job> solution = ig.CalculateSolution();
 				  long duration = System.currentTimeMillis()-s;
 
-				  String out = "\n\nExecuting test " + String.format("%03d", i) + " of "+fileNum+":\n"+
+				  String out = "\n\nExecuting test " + String.format("%03d", i) + ":\n"+
 				  "   Flow-shop Schedule: ";
 				  for (int j = 0; j < solution.size(); j++) {
 					  out = out + solution.get(j).getJobID() + " ";
 //					  System.out.print(solution.get(j).getJobID() + " ");
 				  }
 				  s = System.currentTimeMillis();
-				  out = out + "\n   Flow-shop Makespan: " + NEH.calculateMakespan(solution);
+				  out = out + "\n   Flow-shop Makespan: " + ig.getMakespan();
 				  duration = duration+  (System.currentTimeMillis()-s);
 				  out = out + "\n   Time Duration: "+ duration;
 				  bw.write(out);
