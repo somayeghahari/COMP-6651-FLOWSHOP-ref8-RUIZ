@@ -62,8 +62,9 @@ public class Construction {
         			tempSchedule.add(removedJobs.get(j));
 
             	// the makespan of sequence is calculated
-            	if(NEH.calculateMakespan(tempSchedule) < temp ) {
-            		temp = NEH.calculateMakespan(tempSchedule);
+            	int tempScheduleMakespan = NEH.calculateMakespan(tempSchedule);
+            	if(tempScheduleMakespan < temp ) {
+            		temp =tempScheduleMakespan;
             		minMakespanSchedule = tempSchedule;
             	}
             }
