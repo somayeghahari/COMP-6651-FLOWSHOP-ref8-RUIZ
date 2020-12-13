@@ -1,16 +1,31 @@
 import java.util.List;
 
+/**
+ *  Class for the Iterative Greedy
+ * 
+ * Contains all necessary methods and variables
+ *
+ */
 public class IterativeGreedy {
 	
 	private List<Job> input;
     private int makespan;
 
-	
+	/**
+	 * IterativeGreedy constructor
+	 * @param jobs
+	 */
 	public IterativeGreedy (List<Job> jobs)
 	{
 		input = jobs;
 	}
 	
+	/**
+	 * main function of Iterative Greedy that calls the functions of other classes
+	 * to calculate the makespan
+	 * It handles the main loop
+	 * @return
+	 */
 	public List<Job> CalculateSolution()
 	{
 //		System.out.println();
