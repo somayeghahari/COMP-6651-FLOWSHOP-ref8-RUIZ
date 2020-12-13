@@ -1,13 +1,13 @@
-# COMP-6651-FLOWSHOP-ref8-RUIZ
+# COMP-6651-Iterative-Greedy
 
 A Study and Analysis of Flow Shop Scheduling Problem in Real Life Scenarios
 
 
-Mehrnoosh Amjadi - 40091264
-Leandro Bertazzo Rodrigues - 40105645
-Somayeh Ghahary - 40106359 
-Smeet Pareshkumar Patel - 40093202
-Letícia Pasdiora - 40105654
+Mehrnoosh Amjadi - 40091264 <br />
+Leandro Bertazzo Rodrigues - 40105645 <br />
+Somayeh Ghahary - 40106359 <br />
+Smeet Pareshkumar Patel - 40093202 <br />
+Letícia Pasdiora - 40105654 <br />
 
 Main File: Flowshop.java
  
